@@ -9,6 +9,13 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
   const { username, password, role, department } = req.body;
 
+  
+  if (!username || !password || !role || !department) {
+    return res.status(400).json({
+      message: "All fields are required"
+    });
+  }
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -20,6 +27,7 @@ router.post("/register", async (req, res) => {
         if (err.code === "ER_DUP_ENTRY") {
           return res.status(409).json({ message: "Username already exists" });
         }
+        console.error(err);
         return res.status(500).json({ message: "Database error" });
       }
 
@@ -27,10 +35,12 @@ router.post("/register", async (req, res) => {
         message: "User registered successfully"
       });
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: "Server error" });
   }
 });
+ 
 
 
 
