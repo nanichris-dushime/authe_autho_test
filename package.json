@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,11 @@
   "homepage": "https://github.com/nanichris-dushime/authe_autho_test#readme",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "chai": "^4.5.0",
+    "chai-http": "^4.4.0",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "mocha": "^11.7.5",
     "mysql2": "^3.16.1"
   }
 }
